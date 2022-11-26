@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="header" id="js-header">
+        <div class="header-logo">
+            <img src="./images/bat.png" alt="" width="60px" height="60px">
+            <h2>NEW GAMES</h2>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="">最新情報</a></li>
+                <li><a href="">イベント</a></li>
+                <li><a href="">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-image"></div>
+    
+    <div class="container">
+        <div class="topic-top">
+            <h2>TOPICS</h2>
+            <h3>最新情報</h3>
+        </div>
+        <div class="topic-lists">
+            <a class="col-lg-4 bg-dark mx-2 p-3" href="#">
+                <div class="topic-image"></div>
+                <h4 class="text-light">topic1</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+            <a class="col-lg-4 bg-dark mx-2 p-3" href="#">
+                <div class="topic-image"></div>
+                <h4 class="text-light">topic2</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+            <a class="col-lg-4 bg-dark mx-2 p-3" href="#">
+                <div class="topic-image"></div>
+                <h4 class="text-light">topic3</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="contact-top">
+            <h2>CONTACT</h2>
+            <h3>お問い合わせ</h3>
+        </div>
+        <div class="contact-lists">
+            <a class="col-lg-4 bg-dark mx-2 p-3 contact-item1" href="#">
+                <div class="contact-image"></div>
+                <h4 class="text-light">topic1</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+            <a class="col-lg-4 bg-dark mx-2 p-3 contact-item2" href="#">
+                <div class="contact-image"></div>
+                <h4 class="text-light">topic2</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+            <a class="col-lg-4 bg-dark mx-2 p-3 contact-item3" href="#">
+                <div class="contact-image"></div>
+                <h4 class="text-light">topic3</h4>
+                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quas?</p>
+            </a>
+        </div>
+    </div>
+    <div class="scrollbtn"></div>
+    <script>
+        // const contactLists=document.querySelector('.contact-lists')
+        const contactItem1=document.querySelector('.contact-item1')
+        const contactItem2=document.querySelector('.contact-item2')
+        const contactItem3=document.querySelector('.contact-item3')
+        const setItemActive=(entries)=>{
+            entries.forEach((entry)=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('active')
+                }else{
+                    entry.target.classList.remove('active')
+                }
+            })
+        }
+
+        let options={
+            rootMargin:"0px",
+            threshold:0.3,
+        }
+
+        let observer=new IntersectionObserver(setItemActive,options)
+
+        // itemsImages.map((item)=>{
+        //     observer.observe(item)
+        // })
+        // observer.observe(contactLists)
+        observer.observe(contactItem1)
+        observer.observe(contactItem2)
+        observer.observe(contactItem3)
+
+
+        let header=document.getElementById('js-header')
+        window.addEventListener('scroll',()=>{
+            let y=window.pageYOffset;
+            // console.log(y)
+            if(y>750){
+                header.style.transform="translateY(-100px)";
+            }else{
+                header.style.transform="translateY(0px)"
+            }
+        })
+        let scrollBtn=document.querySelector('.scrollbtn')
+        scrollBtn.addEventListener('click',()=>{
+            window.scrollTo(0,0);
+        })
+    </script>
+</body>
+</html>
